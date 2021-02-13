@@ -8,41 +8,36 @@ class TagsController < ApplicationController
   def create
     @tag = Tag.new(tags_params)
     if @tag.save
-      flash[:success] = 'Tag adicionada com sucesso'
-      redirect_to articles_path
+      redirect_to articles_path, notice: "#{@tag.description} adicionada com sucesso!"
     else
-      flash[:error] = 'Erro ao adicionar tag'
+      flash.now[:alert] = @tag.errors.full_messages.to_sentence
       render :new
     end
   end
 
-  def edit
-    
+  def edit    
   end
 
   def update
     if @tag.update(tags_params)
-      flash[:success] = 'Tag alterada com sucesso'
-      redirect_to articles_path
+      redirect_to articles_path, notice: "#{@tag.description} atualizada com sucesso!"
     else
-      flash[:error] = 'Erro ao alterar tag'
+      flash.now[:alert] = @tag.errors.full_messages.to_sentence
       render :edit
     end
   end
 
   def destroy
     if @tag.destroy
-      flash[:success] = 'Tag removida com sucesso'
-      redirect_to articles_path
+      redirect_to articles_path, notice: "#{@tag.description} excluída com sucesso!"
     else
-      flash[:error] = 'Erro ao remover tag'
+      flash.now[:alert] = @tag.errors.full_messages.to_sentence
       redirect_to articles_path
     end
   end
-  
 
   private
-
+  
   def set_tags
     @tag = Tag.find(params[:id])
   end

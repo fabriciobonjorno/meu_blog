@@ -1,2 +1,21 @@
-<h1>Articles#index</h1>
-<p>Find me in app/views/articles/index.html.erb</p>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Tag</th>
+      <th scope="col">Body</th>
+    </tr>
+  </thead>
+<% @articles.each do |article| %>
+  <tbody>
+    <tr>
+      <th scope="row"><%= article.id %></th>
+      <td><%= article.title %></td>
+      <td><%= article.tag.description %></td>
+      <td><%= article.body %></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
+

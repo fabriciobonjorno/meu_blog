@@ -5,3 +5,18 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+puts "Adicionando Tags"
+10.times do
+  Tag.create!(description: Faker::Computer.stack)
+end
+puts "Tags adicionadas com sucesso!"
+puts "+++++++++++++++++++++++++++++"
+puts "Adicionando Artigos"
+10.times do
+  Article.create!(
+    title: Faker::Company.catch_phrase,
+    body: Faker::Lorem.paragraph(sentence_count: 2),
+    tag_id: rand(1..10)
+  )
+end
+puts "Artigos adicionados com sucesso!"
